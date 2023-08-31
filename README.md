@@ -1,12 +1,14 @@
 # Real-Time American Sign Language Recognition
 
-<p align="left"><img src="https://github.com/khushals025/RealTime-ASL-Gesture-Recognition/blob/main/Mediapipe.png?raw=true" alt="haarcascade" width="500"/>&nbsp;&nbsp;<img src="https://cdn-thumbnails.huggingface.co/social-thumbnails/spaces/ArdyL/ViT-SIBI-Kata.png" alt="aws" width="500" /> 
+
+
+
 
   
 ## Table of Contents
 - [Introduction](#introduction)
 - [Dependencies](#dependencies)
-- [Dataset](#dataset)
+- [Creating Dataset](#dataset)
 - [MediaPipe Holistics](#mediapipe-holistics)
 - [LSTM model](#lstm-model)
 - [Results](#results)
@@ -27,6 +29,5 @@ from matplotlib import pyplot as plt
 import mediapipe as mp
 ```
 
-### 3. Dataset
-
+### 3. Creating Dataset
 
