@@ -31,23 +31,41 @@ import mediapipe as mp
 
 ### 3. Creating Dataset
 
-Recorded 30 videos each 30 seconds long to illustrate the following words in ASL.
+Sign language for wordsare gestures in sequential data.
+Recorded 30 videos each 30 frames long to illustrate the following words in ASL.
 
-- Book
-- Candy
-- Chair
-- Computer
-- Drink
-- Family
-- Hello
-- Help
-- I Love you
-- Medicine
-- Money
-- Party
-- Race
-- Study
-- Thanks
+- 'hello'
+- 'thanks'
+- 'iloveyou'
+- 'Book'
+- 'drink'
+- 'Computer'
+-  'chair'
+-  'candy'
+-  'help'
+-  'study'
+-  'family'
+-  'medicine'
+-  'party'
+-  'money'
+-  'race'
+
+Save data to path 
+
+```bash
+DATA_PATH = os.path.join('MP_Data') 
+
+# Actions that we try to detect
+actions = np.array(['hello', 'thanks', 'iloveyou','Book', 'drink','Computer', 'chair','candy','help','study','family','medicine','party','money','race'])
+# Thirty videos worth of data
+no_sequences = 30
+
+# Videos are going to be 30 frames in length
+sequence_length = 30
+
+# Folder start
+start_folder = 30
+```
 
 
 ```bash
