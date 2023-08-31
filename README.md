@@ -31,3 +31,22 @@ import mediapipe as mp
 
 ### 3. Creating Dataset
 
+Recorded 30 videos each 30 seconds long to illustrate the following words in ASL.
+
+- Book
+- Candy
+- Chair
+- Computer
+- Drink
+- Family
+- Hello
+- Help
+- I Love you
+- Medicine
+- Money
+- Party
+- Race
+- Study
+- Thanks
+
+
