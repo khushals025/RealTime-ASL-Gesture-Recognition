@@ -31,6 +31,19 @@ from matplotlib import pyplot as plt
 import mediapipe as mp
 ```
 
+```bash
+from sklearn.metrics import confusion_matrix, accuracy_score
+import seaborn as sns
+```
+
+```bash
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense
+from tensorflow.keras.callbacks import TensorBoard
+from sklearn.model_selection import train_test_split
+from tensorflow.keras.utils import to_categorical
+```
+
 ## 3. Creating Dataset
 - MP_Data.zip folder contains 
 Sign language for wordsare gestures in sequential data.
@@ -105,7 +118,7 @@ So, when you concatenate all these landmark arrays for all frames in a sequence,
 
 `sequence_length` is 30 frames, and `total_values` is 1662. So, the shape of the concatenated keypoints array for a single sequence of an action would be `(30, 1662)`.
 
-Finally, for each action with 30 sequences, you would have an array with the shape `(30, 30, 1662)`.
+Finally, for each action with 30 sequences, you would have an array with the shape `(30, 30, 1662)` and the total data would be of shape `(30*15, 30, 1662)`
 
 
 
@@ -165,8 +178,71 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
     cv2.destroyAllWindows()
 ```
 
+## Labels 
 
-## 5. LSTM model
+```bash
+label_map = {label:num for num, label in enumerate(actions)}
+
+print(label_map)
+
+'''{'hello': 0,
+ 'thanks': 1,
+ 'iloveyou': 2,
+ 'Book': 3,
+ 'drink': 4,
+ 'Computer': 5,
+ 'chair': 6,
+ 'candy': 7,
+ 'help': 8,
+ 'study': 9,
+ 'family': 10,
+ 'medicine': 11,
+ 'party': 12,
+ 'money': 13,
+ 'race': 14}'''
+
+```
+
+```bash
+sequences, labels = [], []
+for action in actions:
+    for sequence in range(no_sequences):
+        window = []
+        for frame_num in range(sequence_length):
+            res = np.load(os.path.join(DATA_PATH, action, str(sequence), "{}.npy".format(frame_num)))
+            window.append(res)
+        sequences.append(window)
+        labels.append(label_map[action]) #<-------here
+```
+
+ Categorical: label shape is (450,) because 15 actions with 30 sequence each 
+
+ ```bash
+y = to_categorical(labels).astype(int)
+```
+```bash
+
+array([[1, 0, 0, ..., 0, 0, 0],
+       [1, 0, 0, ..., 0, 0, 0],
+       [1, 0, 0, ..., 0, 0, 0],
+       ...,
+       [0, 0, 0, ..., 0, 0, 1],
+       [0, 0, 0, ..., 0, 0, 1],
+       [0, 0, 0, ..., 0, 0, 1]])
+```
+
+## 5. Train-Test Split
+
+- X- Train shape is `(427, 30, 1662)` and X-test shape is `(23, 30, 1662)`
+- Y-Train shape is `(427,15)` and Y-test shape is `(23,15)`
+
+```bash
+x_train, x_test, y_train , y_test = train_test_split(X, y, test_size=0.05)
+```
+
+
+
+## 6. LSTM model
 
 
 ```bash
