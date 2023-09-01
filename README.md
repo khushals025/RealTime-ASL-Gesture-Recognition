@@ -256,3 +256,6 @@ model.add(Dense(32 , activation = 'relu'))
 model.add(Dense(actions.shape[0] , activation = 'softmax')) # actions.shape[0] = 3
 ```
 
+## 7. Heat Map
+
+
