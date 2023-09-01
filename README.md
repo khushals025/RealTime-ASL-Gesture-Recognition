@@ -32,7 +32,7 @@ import mediapipe as mp
 ```
 
 ## 3. Creating Dataset
-
+- MP_Data.zip folder contains 
 Sign language for wordsare gestures in sequential data.
 Recorded 30 videos each 30 frames long to illustrate the following words in ASL.
 
@@ -163,5 +163,20 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
                     
     cap.release()
     cv2.destroyAllWindows()
+```
+
+
+## 5. LSTM model
+
+
+```bash
+# Neural Network Architecture 
+model = Sequential()
+model.add(LSTM(64 , return_sequences = True , activation = 'relu', input_shape = (30, 1662))) #64 LSTM units not layers
+model.add(LSTM(128 , return_sequences = True , activation = 'relu'))
+model.add(LSTM(64 , return_sequences = False  , activation = 'relu')) # we don't need to return sequences to the next layer as it is a Dense Layer
+model.add(Dense(64 , activation= 'relu')) # Fully connected layers --> Dense 
+model.add(Dense(32 , activation = 'relu'))
+model.add(Dense(actions.shape[0] , activation = 'softmax')) # actions.shape[0] = 3
 ```
 
