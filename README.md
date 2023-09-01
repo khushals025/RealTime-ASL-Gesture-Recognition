@@ -67,7 +67,11 @@ sequence_length = 30
 start_folder = 30
 ```
 
+- 'Holistic' is a class that encapsulates the functionality for detecting facial landmarks, hand landmarks, and body pose landmarks in images or frames.
+- 'min_detection_confidence' is a parameter that sets the minimum confidence threshold for the initial detection of landmarks. Landmarks with confidence scores below this threshold will not be detected.
+- 'min_tracking_confidence' is a parameter that sets the minimum confidence threshold for tracking landmarks after the initial detection. Landmarks with confidence scores below this threshold will not be included in the tracking process.
 
+  
 ```bash
 cap = cv2.VideoCapture(0)
 # Set mediapipe model 
@@ -118,3 +122,7 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
     cap.release()
     cv2.destroyAllWindows()
 ```
+model is an object of mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5)
+
+- In the above code snippet we craete 30 numpy array of keypoints detected from mediapipe holistioc by feeding contineous data one by one to the model.
+- 
