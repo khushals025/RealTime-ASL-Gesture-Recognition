@@ -258,4 +258,6 @@ model.add(Dense(actions.shape[0] , activation = 'softmax')) # actions.shape[0] =
 
 ## 7. Heat Map
 
-
+<div align="center">
+  <img src="https://github.com/khushals025/RealTime-ASL-Gesture-Recognition/blob/main/Confusion%20matrix.png?raw=true" alt="Image Alt" width="500">
+</div>
