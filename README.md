@@ -125,4 +125,32 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
 model is an object of mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5)
 
 - In the above code snippet we craete 30 numpy array of keypoints detected from mediapipe holistioc by feeding contineous data one by one to the model.
-- 
+- Given that there are 30 sequences for each action, and each sequence consists of 30 frames, the shape of the concatenated keypoints array for a single action would be:
+
+**Pose Landmarks:**
+- 33 pose landmarks, each with 4 values (x, y, z, visibility).
+- Total values for pose landmarks: 33 * 4 = 132 values
+
+**Face Landmarks:**
+- 468 face landmarks, each with 3 values (x, y, z).
+- Total values for face landmarks: 468 * 3 = 1404 values
+
+**Left Hand Landmarks:**
+- 21 left hand landmarks, each with 3 values (x, y, z).
+- Total values for left hand landmarks: 21 * 3 = 63 values
+
+**Right Hand Landmarks:**
+- 21 right hand landmarks, each with 3 values (x, y, z).
+- Total values for right hand landmarks: 21 * 3 = 63 values
+
+Therefore, the total number of values for all landmarks (pose, face, left hand, and right hand) for a single frame would be:
+
+132 (pose) + 1404 (face) + 63 (left hand) + 63 (right hand) = 1662 values
+
+So, when you concatenate all these landmark arrays for all frames in a sequence, you would get an array with the shape:
+
+`(sequence_length, total_values)`
+
+`sequence_length` is 30 frames, and `total_values` is 1662. So, the shape of the concatenated keypoints array for a single sequence of an action would be `(30, 1662)`.
+
+Finally, for each action with 30 sequences, you would have an array with the shape `(30, 30, 1662)`.
