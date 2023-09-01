@@ -31,7 +31,7 @@ from matplotlib import pyplot as plt
 import mediapipe as mp
 ```
 
-### 3. Creating Dataset
+## 3. Creating Dataset
 
 Sign language for wordsare gestures in sequential data.
 Recorded 30 videos each 30 frames long to illustrate the following words in ASL.
@@ -68,6 +68,8 @@ sequence_length = 30
 # Folder start
 start_folder = 30
 ```
+
+## 4. Media-Pipe Holistics
 
 - 'Holistic' is a class that encapsulates the functionality for detecting facial landmarks, hand landmarks, and body pose landmarks in images or frames.
 - 'min_detection_confidence' is a parameter that sets the minimum confidence threshold for the initial detection of landmarks. Landmarks with confidence scores below this threshold will not be detected.
