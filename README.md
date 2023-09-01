@@ -1,7 +1,9 @@
 # Real-Time American Sign Language Recognition
 
 
-
+<div align="center">
+  <img src="https://www.startasl.com/wp-content/uploads/asl-signs-new-1.jpeg" alt="Image Alt" width="800">
+</div>
 
 
   
